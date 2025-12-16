@@ -1,0 +1,2072 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Final Year Projects | BCA, MCA & Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Final year academic projects for BCA, MCA & Engineering students with complete source code, documentation and guidance."
+  />
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --bg-card: #ffffff;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.1);
+      --primary-dark: #1d4ed8;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #0ea5e9;
+      --danger: #ef4444;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-subtle: 0 8px 24px rgba(15, 23, 42, 0.06);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.24s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0f2fe 0, transparent 55%),
+        radial-gradient(circle at top right, #e5e7eb 0, transparent 50%),
+        var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .max-width {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+          to bottom,
+          rgba(249, 250, 251, 0.9),
+          rgba(249, 250, 251, 0.7),
+          transparent
+        );
+      border-bottom: 1px solid rgba(229, 231, 235, 0.7);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 0, #bfdbfe 0, transparent 55%),
+        linear-gradient(135deg, #2563eb, #0ea5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 999px;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 60%;
+    }
+
+    .nav-cta {
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-chip {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.15);
+      background: rgba(219, 234, 254, 0.6);
+      color: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .nav-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.28);
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.15rem;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), background var(--transition-fast),
+        color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #ffffff;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+    }
+
+    .btn-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.06);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-toggle span {
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111827;
+      position: relative;
+      transition: background var(--transition-fast);
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: #111827;
+      transition: transform var(--transition-fast), top var(--transition-fast),
+        opacity var(--transition-fast);
+    }
+
+    .nav-toggle span::before {
+      top: -5px;
+    }
+    .nav-toggle span::after {
+      top: 5px;
+    }
+
+    .nav-toggle.open span {
+      background: transparent;
+    }
+
+    .nav-toggle.open span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.open span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      padding-bottom: 0.75rem;
+    }
+
+    .mobile-menu-inner {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      box-shadow: var(--shadow-subtle);
+      padding: 0.8rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .mobile-menu a {
+      padding: 0.4rem 0.1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .mobile-menu a strong {
+      color: var(--text-main);
+    }
+
+    .mobile-menu-cta {
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 0.3rem;
+    }
+
+    /* Hero */
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 3.5rem 0;
+    }
+
+    .hero {
+      padding-top: 2.4rem;
+      padding-bottom: 3.2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr);
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.2rem 0.5rem 0.2rem 0.28rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(255, 255, 255, 0.95);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-kicker-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0 0, #22c55e 45%, #16a34a 100%);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-kicker span {
+      font-weight: 600;
+      color: #1d4ed8;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 4.1vw, 2.6rem);
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      color: #020617;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, #1d4ed8, #0ea5e9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-subtitle strong {
+      color: var(--text-main);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.45);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(22, 163, 74, 0.55);
+    }
+
+    .btn-whatsapp .btn-icon {
+      background: rgba(15, 23, 42, 0.14);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-note strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.3rem;
+    }
+
+    .pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .pill-strong {
+      border-color: rgba(37, 99, 235, 0.25);
+      background: rgba(219, 234, 254, 0.8);
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      background: radial-gradient(circle at top left, #dbeafe 0, transparent 55%),
+        linear-gradient(145deg, #0f172a, #020617);
+      color: #e5e7eb;
+      padding: 1.4rem 1.4rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      pointer-events: none;
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card-badge {
+      padding: 0.14rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.68rem;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.65);
+    }
+
+    .hero-card-badge--primary {
+      border-color: rgba(34, 197, 94, 0.5);
+      background: rgba(21, 128, 61, 0.8);
+    }
+
+    .hero-card-metrics {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f9fafb;
+    }
+
+    .hero-card-footer {
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .hero-card-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.14rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      font-size: 0.68rem;
+      color: #e5e7eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+    }
+
+    .hero-card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .tag-soft {
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+    }
+
+    .hero-ribbon {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: rgba(22, 163, 74, 0.95);
+      color: #f9fafb;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.22rem;
+      box-shadow: 0 10px 22px rgba(22, 163, 74, 0.65);
+    }
+
+    .hero-ribbon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #bbf7d0;
+    }
+
+    /* Section headings */
+    .section-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-kicker {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 24rem;
+    }
+
+    /* About */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-subtle);
+      padding: 1.3rem 1.4rem;
+    }
+
+    .card-muted {
+      background: rgba(248, 250, 252, 0.95);
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .about-text p + p {
+      margin-top: 0.7rem;
+    }
+
+    .about-highlights {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .about-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+
+    .about-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.09);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #15803d;
+      flex-shrink: 0;
+    }
+
+    .about-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .about-meta-item strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .about-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #020617;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-badge {
+      font-size: 0.72rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .about-badge strong {
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.05fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .services-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.6rem 0.7rem;
+      align-items: flex-start;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(229, 231, 235, 0.95);
+    }
+
+    .service-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #1d4ed8;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.22);
+    }
+
+    .service-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #020617;
+    }
+
+    .service-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      grid-column: 2 / -1;
+    }
+
+    .service-tag-row {
+      margin-top: 0.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .service-tag {
+      font-size: 0.7rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(239, 246, 255, 0.9);
+      color: #1d4ed8;
+      border: 1px solid rgba(191, 219, 254, 0.95);
+    }
+
+    .mini-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+    }
+
+    .stack-card {
+      border-radius: 12px;
+      padding: 0.75rem 0.7rem;
+      background: rgba(248, 250, 252, 0.98);
+      border: 1px solid var(--border);
+    }
+
+    .stack-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .stack-line {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Why choose me */
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .benefit {
+      border-radius: 12px;
+      padding: 0.75rem 0.75rem;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      font-size: 0.82rem;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .benefit-title {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .benefit-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .benefit-chip {
+      font-size: 0.68rem;
+      padding: 0.12rem 0.4rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.07);
+      color: #1d4ed8;
+      align-self: flex-start;
+    }
+
+    .process-list {
+      margin-top: 0.5rem;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .process-item {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .process-step {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #1d4ed8;
+      font-size: 0.72rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .contact-details {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-row {
+      margin-top: 0.7rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.86rem;
+    }
+
+    .contact-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #1d4ed8;
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: #1d4ed8;
+      font-weight: 500;
+    }
+
+    .contact-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .form {
+      display: grid;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .field-label {
+      font-weight: 500;
+      color: #020617;
+      font-size: 0.82rem;
+    }
+
+    .field-label span {
+      color: var(--danger);
+      margin-left: 0.1rem;
+    }
+
+    .field-input,
+    .field-textarea,
+    .field-select {
+      border-radius: 10px;
+      border: 1px solid rgba(209, 213, 219, 0.95);
+      padding: 0.55rem 0.65rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      background: rgba(255, 255, 255, 0.98);
+      outline: none;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast), background var(--transition-fast);
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    .field-textarea {
+      min-height: 90px;
+    }
+
+    .field-input:focus,
+    .field-textarea:focus,
+    .field-select:focus {
+      border-color: rgba(37, 99, 235, 0.9);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.65),
+        0 10px 24px rgba(37, 99, 235, 0.18);
+      background: #ffffff;
+    }
+
+    .field-help {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .field-error {
+      font-size: 0.74rem;
+      color: var(--danger);
+      display: none;
+    }
+
+    .field-error.visible {
+      display: block;
+    }
+
+    .form-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+    }
+
+    .form-status {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .form-status.success {
+      color: #15803d;
+    }
+
+    .form-status.error {
+      color: var(--danger);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 1.2rem 0 1.5rem;
+      background: rgba(248, 250, 252, 0.95);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.78rem;
+      max-width: 20rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .footer-links span {
+      cursor: default;
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      .nav-cta {
+        display: inline-flex;
+      }
+      .nav-toggle,
+      .mobile-menu {
+        display: none !important;
+      }
+
+      .hero {
+        padding-top: 3.4rem;
+        padding-bottom: 4.2rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+        gap: 2.7rem;
+      }
+
+      section {
+        padding: 3.8rem 0;
+      }
+
+      .about-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.05fr);
+      }
+
+      .hero-card-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.85fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about-layout,
+      .services-grid,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .benefits-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .stack-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.65rem;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+      }
+
+      .section-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-row {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header / Navigation -->
+    <header>
+      <div class="max-width">
+        <div class="nav">
+          <div class="brand">
+            <div class="brand-badge">F</div>
+            <div class="brand-text">
+              <div class="brand-title">Final Year Projects</div>
+              <div class="brand-sub">BCA • MCA • Engineering</div>
+            </div>
+          </div>
+
+          <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#why">Why Choose Me</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="nav-cta">
+            <div class="nav-chip">
+              <span class="nav-chip-dot"></span>
+              <span>Projects available now</span>
+            </div>
+            <button class="btn btn-outline" data-scroll="#contact">
+              <span class="btn-icon">✉</span>
+              <span>Quick Inquiry</span>
+            </button>
+          </div>
+
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+          </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-menu-inner">
+            <a href="#about"><strong>About</strong> • Who I am</a>
+            <a href="#services"><strong>Services</strong> • What you get</a>
+            <a href="#why"><strong>Why Me</strong> • Benefits</a>
+            <a href="#contact"><strong>Contact</strong> • WhatsApp & Form</a>
+            <div class="mobile-menu-cta">
+              <button class="btn btn-primary" data-scroll="#contact" style="flex: 1;">
+                <span class="btn-icon">✉</span>
+                <span>Send Inquiry</span>
+              </button>
+              <button
+                class="btn btn-outline"
+                data-whatsapp
+                style="flex: 1; font-size: 0.82rem;"
+              >
+                <span class="btn-icon">💬</span>
+                <span>WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div class="max-width">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-kicker">
+                <span class="hero-kicker-dot"></span>
+                <span>Academic project guidance </span>
+              </div>
+              <h1 class="hero-title">
+                Final Year Projects for
+                <span class="hero-highlight">BCA, MCA &amp; Engineering</span>
+                Students
+              </h1>
+              <p class="hero-subtitle">
+                Get <strong>ready-to-submit projects</strong> with
+                <strong>complete source code, documentation (SRS, report, PPT)</strong>
+                and one-to-one <strong>explanation &amp; viva preparation</strong>.
+              </p>
+
+              <div class="hero-cta-row">
+                <button class="btn btn-whatsapp" data-whatsapp>
+                  <span class="btn-icon">💬</span>
+                  <span>Contact on WhatsApp</span>
+                </button>
+                <button class="btn btn-outline" data-scroll="#contact">
+                  <span class="btn-icon">📄</span>
+                  <span>Get Project Details</span>
+                </button>
+              </div>
+
+              <div class="hero-note">
+                <strong>Need a project quickly?</strong> Share your course,
+                technology &amp; deadline — I’ll suggest suitable projects with demo.
+              </div>
+
+              <div class="hero-tags">
+                <span class="pill pill-strong">Final Year &amp; Mini Projects</span>
+                <span class="pill">Full documentation included</span>
+                <span class="pill">Online explanation &amp; support</span>
+              </div>
+            </div>
+
+            <!-- Hero side card -->
+            <aside class="hero-card" aria-label="Project summary">
+              <div class="hero-ribbon">
+                <span class="hero-ribbon-dot"></span>
+                <span>100% academic-focused</span>
+              </div>
+              <div class="hero-card-grid">
+                <div>
+                  <div class="hero-card-title">Final Year Project Companion</div>
+                  <div class="hero-card-sub">
+                    Projects designed for university submission with clean code and
+                    industry-style structure.
+                  </div>
+                  <div class="hero-card-badges">
+                    <span class="hero-card-badge hero-card-badge--primary">
+                      ✅ Code + Docs + Explanation
+                    </span>
+                    <span class="hero-card-badge">BCA / MCA / BE / BTech</span>
+                    <span class="hero-card-badge">Mini &amp; Major Projects</span>
+                  </div>
+                  <div class="hero-card-metrics">
+                    <div class="metric">
+                      <div class="metric-label">Projects delivered</div>
+                      <div class="metric-value">40+ colleges</div>
+                    </div>
+                    <div class="metric">
+                      <div class="metric-label">Support</div>
+                      <div class="metric-value">Till viva &amp; submission</div>
+                    </div>
+                  </div>
+                  <div class="hero-card-footer">
+                    Share your <strong>syllabus or college guidelines</strong> – I’ll
+                    align the project accordingly.
+                  </div>
+                </div>
+                <div>
+                  <div class="hero-card-pill">
+                    <span class="hero-card-pill-dot"></span>
+                    <span>Popular tech stack</span>
+                  </div>
+                  <div class="hero-card-stack">
+                    <span class="tag-soft">Mobile App</span>
+                    <span class="tag-soft">Machine Learning</span>
+                    <span class="tag-soft">Flutter • Firebase • Supabase</span>
+                    <span class="tag-soft">Java • Spring basics</span>
+                    <span class="tag-soft">Python (Django / Flask)</span>
+                    <span class="tag-soft">HTML • CSS • JavaScript</span>
+                  </div>
+                  <div class="hero-card-footer">
+                    Projects include <strong>setup guide, run steps, and code walk-through</strong>
+                    recorded/online.
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <div class="max-width">
+          <div class="section-heading">
+            <div class="section-kicker">About Me</div>
+            <div class="section-title-row">
+              <h2 class="section-title">Academic project guidance focused on student success</h2>
+              <p class="section-subtitle">
+                I help BCA, MCA and Engineering students finish their final year
+                projects with clarity and confidence — not just copy-paste code.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-layout">
+            <div class="card">
+              <div class="about-text">
+                <p>
+                  I’m a <strong>part-time freelance developer</strong> who
+                  specializes in building <strong>academic projects</strong> that
+                  look professional, run smoothly, and are easy to understand.
+                </p>
+                <p>
+                  Every project is created with
+                  <strong>clear documentation, proper folder structure, comments</strong>
+                  and a simple explanation so you can confidently present it to your
+                  guide and examiners.
+                </p>
+              </div>
+              <div class="about-highlights">
+                <div class="about-highlight">
+                  <div class="about-icon">🎓</div>
+                  <div>
+                    <strong>Made for academic evaluation</strong>
+                    <div class="about-text">
+                      Proper SRS, report and presentation aligned with typical
+                      university formats.
+                    </div>
+                  </div>
+                </div>
+                <div class="about-highlight">
+                  <div class="about-icon">💻</div>
+                  <div>
+                    <strong>Practical &amp; modern topics</strong>
+                    <div class="about-text">
+                      Real-world style ideas using Flutter, web, Java, Python,
+                      Firebase and more.
+                    </div>
+                  </div>
+                </div>
+                <div class="about-highlight">
+                  <div class="about-icon">🤝</div>
+                  <div>
+                    <strong>Guidance, not just files</strong>
+                    <div class="about-text">
+                      I walk you through the project logic so you can handle viva and
+                      interviews.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="about-meta">
+                <div class="about-meta-item">
+                  <strong>Typical timelines:</strong> 5–10 days depending on complexity
+                </div>
+                <div class="about-meta-item">
+                  <strong>Mode:</strong> Online explanation via screen share / call
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-muted">
+              <div class="about-label">Who I usually work with</div>
+              <div class="about-badges">
+                <span class="about-badge">
+                  <strong>BCA / BSc-IT</strong> final year projects
+                </span>
+                <span class="about-badge">
+                  <strong>MCA / MSc-IT</strong> full stack &amp; advanced topics
+                </span>
+                <span class="about-badge">
+                  <strong>BE / BTech</strong> mini &amp; major projects
+                </span>
+              </div>
+
+              <div class="about-label">You get support for</div>
+              <div class="about-badges">
+                <span class="about-badge">Understanding project flow</span>
+                <span class="about-badge">Explaining diagrams &amp; modules</span>
+                <span class="about-badge">Last-minute viva questions</span>
+                <span class="about-badge">Basic deployment / demo</span>
+              </div>
+
+              <div class="about-text" style="margin-top: 0.8rem;">
+                If you already have a project idea or partially done work, I can
+                <strong>fix, complete or customize</strong> it according to your
+                college requirements.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="max-width">
+          <div class="section-heading">
+            <div class="section-kicker">Services</div>
+            <div class="section-title-row">
+              <h2 class="section-title">Everything you need for your final year project</h2>
+              <p class="section-subtitle">
+                From idea selection to source code, documentation and viva
+                preparation — you can pick what you need or take a complete package.
+              </p>
+            </div>
+          </div>
+
+          <div class="services-grid">
+            <div>
+              <div class="services-list">
+                <div class="service-item">
+                  <div class="service-icon">📘</div>
+                  <div>
+                    <div class="service-title">
+                      Final Year Projects (BCA / MCA / Engineering)
+                    </div>
+                    <div class="service-meta">
+                      End-to-end project with modules, database, documentation and
+                      explanation tailored to your syllabus.
+                    </div>
+                    <div class="service-tag-row">
+                      <span class="service-tag">Major Projects</span>
+                      <span class="service-tag">Web &amp; Mobile</span>
+                      <span class="service-tag">Mobile App</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">💡</div>
+                  <div>
+                    <div class="service-title">Mini Projects &amp; Internal Work</div>
+                    <div class="service-meta">
+                      Smaller, quick projects for internal submissions or practice
+                      using modern tech stacks.
+                    </div>
+                    <div class="service-tag-row">
+                      <span class="service-tag">Mini Projects</span>
+                      <span class="service-tag">Short timelines</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">📑</div>
+                  <div>
+                    <div class="service-title">
+                      Project Documentation (SRS, Report, PPT)
+                    </div>
+                    <div class="service-meta">
+                      Clean and structured documentation in MS Word / PDF and
+                      presentation slides ready for review.
+                    </div>
+                    <div class="service-tag-row">
+                      <span class="service-tag">SRS &amp; Diagrams</span>
+                      <span class="service-tag">Report &amp; PPT</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">🧩</div>
+                  <div>
+                    <div class="service-title">
+                      Source Code Explanation &amp; Customization
+                    </div>
+                    <div class="service-meta">
+                      One-to-one walkthrough of the code, logic and database +
+                      changes based on your guide’s feedback.
+                    </div>
+                    <div class="service-tag-row">
+                      <span class="service-tag">Code walkthrough</span>
+                      <span class="service-tag">Bug fixes &amp; changes</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">🎤</div>
+                  <div>
+                    <div class="service-title">
+                      Viva &amp; Interview Preparation
+                    </div>
+                    <div class="service-meta">
+                      Important questions, how to explain your project, and basic
+                      concepts you should be clear about.
+                    </div>
+                    <div class="service-tag-row">
+                      <span class="service-tag">Viva Q&amp;A</span>
+                      <span class="service-tag">Interview angle</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mini-note">
+                You can choose <strong>only documentation</strong>, only
+                <strong>code &amp; explanation</strong> or a
+                <strong>complete bundle</strong> depending on your need and budget.
+              </div>
+            </div>
+
+            <aside class="card">
+              <div class="about-label">Technologies I work with</div>
+              <div class="stack-grid">
+                <div class="stack-card">
+                  <div class="stack-title">Mobile App</div>
+                  <div class="stack-line">
+                    Native &amp; cross-platform mobile apps (Android / iOS) using Flutter, React Native.
+                  </div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-title">Mobile &amp; Web Apps</div>
+                  <div class="stack-line">
+                    Flutter (Android / iOS / Web) with Firebase / Supabase backend.
+                  </div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-title">Web Development</div>
+                  <div class="stack-line">
+                    HTML, CSS, JavaScript, simple admin panels &amp; dashboards.
+                  </div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-title">Java &amp; Python</div>
+                  <div class="stack-line">
+                    Core Java projects, basic Spring concepts, Python (Django / Flask).
+                  </div>
+                </div>
+                <div class="stack-card">
+                  <div class="stack-title">Database</div>
+                  <div class="stack-line">
+                    Firebase, Supabase, MySQL/SQL — with ER diagrams &amp; schema.
+                  </div>
+                </div>
+              </div>
+              <div class="mini-note">
+                If you have a <strong>specific technology</strong> you must use (as
+                per college), mention it in the form or WhatsApp message.
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why choose me -->
+      <section id="why">
+        <div class="max-width">
+          <div class="section-heading">
+            <div class="section-kicker">Why Choose Me</div>
+            <div class="section-title-row">
+              <h2 class="section-title">Friendly, reliable and student-focused</h2>
+              <p class="section-subtitle">
+                My goal is to make sure you <strong>submit on time</strong>,
+                <strong>understand your project</strong> and feel confident in front
+                of your faculty.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-grid">
+            <div class="card">
+              <div class="benefits-grid">
+                <div class="benefit">
+                  <span class="benefit-chip">Budget-friendly</span>
+                  <div class="benefit-title">Affordable pricing</div>
+                  <div class="benefit-text">
+                    Flexible pricing based on modules and documentation — no
+                    unnecessary extra charges.
+                  </div>
+                </div>
+                <div class="benefit">
+                  <span class="benefit-chip">Reliable</span>
+                  <div class="benefit-title">On-time delivery</div>
+                  <div class="benefit-text">
+                    Clear timelines for demo, code delivery and documentation so you
+                    don’t miss internal or final submissions.
+                  </div>
+                </div>
+                <div class="benefit">
+                  <span class="benefit-chip">Clarity</span>
+                  <div class="benefit-title">Live demo &amp; explanation</div>
+                  <div class="benefit-text">
+                    I show you how the project runs and explain each module in simple
+                    language.
+                  </div>
+                </div>
+                <div class="benefit">
+                  <span class="benefit-chip">Support</span>
+                  <div class="benefit-title">Full support till submission</div>
+                  <div class="benefit-text">
+                    Help with small changes, doubts and viva questions even after
+                    project delivery.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-muted">
+              <div class="about-label">Simple 4-step process</div>
+              <div class="process-list">
+                <div class="process-item">
+                  <div class="process-step">1</div>
+                  <div>
+                    Share your <strong>course, technology preference</strong> and
+                    <strong>deadline</strong> via WhatsApp or the contact form.
+                  </div>
+                </div>
+                <div class="process-item">
+                  <div class="process-step">2</div>
+                  <div>
+                    I suggest <strong>project topics</strong> or refine your idea and
+                    provide an approximate <strong>timeline &amp; cost</strong>.
+                  </div>
+                </div>
+                <div class="process-item">
+                  <div class="process-step">3</div>
+                  <div>
+                    Development + <strong>demo</strong> + handover of
+                    <strong>source code, documentation</strong> and explanation.
+                  </div>
+                </div>
+                <div class="process-item">
+                  <div class="process-step">4</div>
+                  <div>
+                    Final <strong>viva preparation</strong>, Q&amp;A and minor
+                    updates until your submission is done.
+                  </div>
+                </div>
+              </div>
+
+              <div class="mini-note">
+                To get started quickly, keep your
+                <strong>syllabus copy / project guidelines</strong> handy when you
+                contact me.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="max-width">
+          <div class="section-heading">
+            <div class="section-kicker">Contact</div>
+            <div class="section-title-row">
+              <h2 class="section-title">Tell me about your project</h2>
+              <p class="section-subtitle">
+                Share your course, topic (if you have one), and last date — I’ll
+                reply with suitable project options and next steps.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card">
+              <div class="contact-details">
+                <div class="about-label">Preferred contact</div>
+                <div class="contact-row">
+                  <div class="contact-item">
+                    <div class="contact-badge">💬</div>
+                    <div>
+                      <strong>WhatsApp</strong><br />
+                      <a href="https://wa.me/918431145166" target="_blank" rel="noopener"
+                        >+91 84311 45166</a
+                      ><br />
+                      <span class="contact-note">
+                        Click the button below to open WhatsApp with a pre-filled
+                        message.
+                      </span>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <div class="contact-badge">✉</div>
+                    <div>
+                      <strong>Email</strong><br />
+                      <a href="mailto:collegeprojects2204@gmail.com" style="margin-top: 0.25rem; display: inline-block;">collegeprojects2204@gmail.com</a><br />
+                      <span class="contact-note">
+                        Mention your <strong>course, semester, deadline</strong> in
+                        the subject or body.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 1rem;">
+                  <button class="btn btn-whatsapp" data-whatsapp style="width: 100%;">
+                    <span class="btn-icon">💬</span>
+                    <span>Contact on WhatsApp Now</span>
+                  </button>
+                </div>
+
+                <div class="contact-note">
+                  I usually reply within
+                  <strong>2–6 hours</strong> (faster during the day). For urgent
+                  deadlines, please mention it clearly.
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-muted">
+              <form class="form" id="inquiryForm" novalidate>
+                <div class="field">
+                  <label class="field-label" for="name">
+                    Name<span>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="field-input"
+                    autocomplete="name"
+                    placeholder="Your full name"
+                    required
+                  />
+                  <div class="field-error" data-error-for="name">
+                    Please enter your name.
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="course">
+                    Course<span>*</span>
+                  </label>
+                  <select
+                    id="course"
+                    name="course"
+                    class="field-select"
+                    required
+                  >
+                    <option value="">Select your course</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="BE/BTech">BE / BTech</option>
+                    <option value="BSc-IT">BSc-IT</option>
+                    <option value="MSc-IT">MSc-IT</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <div class="field-error" data-error-for="course">
+                    Please select your course.
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="projectType">
+                    Project Type<span>*</span>
+                  </label>
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    class="field-select"
+                    required
+                  >
+                    <option value="">What are you looking for?</option>
+                    <option value="Final Year Project">
+                      Final Year Project (Major)
+                    </option>
+                    <option value="Mini Project">Mini Project</option>
+                    <option value="Documentation Only">
+                      Documentation Only (SRS/Report/PPT)
+                    </option>
+                    <option value="Code & Explanation">
+                      Source Code + Explanation
+                    </option>
+                    <option value="Viva & Interview Guidance">
+                      Viva &amp; Interview Guidance
+                    </option>
+                    <option value="Project Customization">
+                      Project Customization / Fixes
+                    </option>
+                  </select>
+                  <div class="field-error" data-error-for="projectType">
+                    Please select a project type.
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="message">
+                    Project details / Requirements<span>*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="field-textarea"
+                    placeholder="Example: Need a Flutter + Firebase based project for MCA final year. Deadline is DD/MM. College prefers web or mobile app. Any topic suggestions?"
+                    required
+                  ></textarea>
+                  <div class="field-error" data-error-for="message">
+                    Please share a few details so I can help you better.
+                  </div>
+                  <div class="field-help">
+                    Add your <strong>deadline</strong>, preferred
+                    <strong>technology</strong> and any <strong>guidelines</strong>
+                    from your college.
+                  </div>
+                </div>
+
+                <div class="form-footer">
+                  <button type="submit" class="btn btn-primary">
+                    <span class="btn-icon">📩</span>
+                    <span>Send Inquiry (Draft WhatsApp)</span>
+                  </button>
+                  <div class="form-status" id="formStatus">
+                    Your message will open in WhatsApp so you can send it directly.
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="max-width">
+        <div class="footer-row">
+          <div>© 2025 Final Year Project Services. All rights reserved.</div>
+          <div class="footer-disclaimer">
+            Disclaimer: Services are provided strictly for
+            <strong>academic guidance purposes</strong>. Students are responsible
+            for following their university rules and ethics policies.
+          </div>
+          <div class="footer-links">
+            <span>Made for students</span>
+            <span>Online guidance</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Configuration: put your real WhatsApp number here (with country code, no spaces)
+    const WHATSAPP_NUMBER = "918431145166"; // Example: 91xxxxxxxxxx
+
+    // Smooth scrolling for internal links & buttons with data-scroll
+    (function () {
+      const scrollLinks = document.querySelectorAll(
+        'a[href^="#"], [data-scroll]'
+      );
+
+      function smoothScroll(targetSelector) {
+        const targetEl = document.querySelector(targetSelector);
+        if (!targetEl) return;
+        const headerOffset = 72; // approximate sticky header height
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+
+      scrollLinks.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          const href = el.getAttribute("href");
+          const dataTarget = el.getAttribute("data-scroll");
+          const target = dataTarget || (href && href.startsWith("#") ? href : null);
+          if (!target) return;
+          e.preventDefault();
+          smoothScroll(target);
+          // close mobile menu if open
+          const mobileMenu = document.getElementById("mobileMenu");
+          const navToggle = document.querySelector(".nav-toggle");
+          if (mobileMenu && navToggle && navToggle.classList.contains("open")) {
+            mobileMenu.style.display = "none";
+            navToggle.classList.remove("open");
+          }
+        });
+      });
+    })();
+
+    // Mobile navigation toggle
+    (function () {
+      const toggle = document.querySelector(".nav-toggle");
+      const menu = document.getElementById("mobileMenu");
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener("click", () => {
+        const isOpen = toggle.classList.toggle("open");
+        menu.style.display = isOpen ? "block" : "none";
+      });
+    })();
+
+    // WhatsApp helpers
+    function buildWhatsAppUrl(message) {
+      // Use the number directly as it's already in correct format (918277362846)
+      const cleanNumber = WHATSAPP_NUMBER.trim();
+      const encodedMessage = encodeURIComponent(message);
+      // Use wa.me format - exactly matching the contact link format
+      return `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
+    }
+
+    function openWhatsAppWithMessage(message) {
+      const url = buildWhatsAppUrl(message);
+      // Debug: log the URL to console
+      console.log('Opening WhatsApp URL:', url);
+      
+      // Check if mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // On mobile: use location.href to open WhatsApp app directly
+        window.location.href = url;
+      } else {
+        // On desktop: create anchor and click for better compatibility
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        // Remove after a short delay
+        setTimeout(() => document.body.removeChild(link), 100);
+      }
+    }
+
+    // Direct WhatsApp buttons
+    (function () {
+      const buttons = document.querySelectorAll("[data-whatsapp]");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const defaultMsg =
+            "Hi, I\'m interested in final year project help. My course is [Your Course] and my deadline is [Date]. Please share some suitable project options.";
+          openWhatsAppWithMessage(defaultMsg);
+        });
+      });
+    })();
+
+    // Form handling: validate and open WhatsApp with a pre-filled detailed message
+    (function () {
+      const form = document.getElementById("inquiryForm");
+      const statusEl = document.getElementById("formStatus");
+      if (!form || !statusEl) return;
+
+      const fields = ["name", "course", "projectType", "message"];
+
+      function showError(fieldId, message) {
+        const errorEl = document.querySelector(
+          `.field-error[data-error-for="${fieldId}"]`
+        );
+        const inputEl = document.getElementById(fieldId);
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.classList.add("visible");
+        }
+        if (inputEl) {
+          inputEl.setAttribute("aria-invalid", "true");
+        }
+      }
+
+      function clearErrors() {
+        document.querySelectorAll(".field-error.visible").forEach((el) => {
+          el.classList.remove("visible");
+        });
+        fields.forEach((id) => {
+          const inputEl = document.getElementById(id);
+          if (inputEl) inputEl.removeAttribute("aria-invalid");
+        });
+        statusEl.textContent =
+          "Your message will open in WhatsApp so you can send it directly.";
+        statusEl.classList.remove("error", "success");
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const values = {};
+        let hasError = false;
+
+        fields.forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const value = (el.value || "").trim();
+          values[id] = value;
+
+          if (!value) {
+            showError(id, "This field is required.");
+            hasError = true;
+          }
+        });
+
+        if (hasError) {
+          statusEl.textContent =
+            "Please fill all the required fields before sending.";
+          statusEl.classList.add("error");
+          return;
+        }
+
+        const message = [
+          "Hi, I found your Final Year Project services page and I want help with my project.",
+          "",
+          `Name: ${values.name}`,
+          `Course: ${values.course}`,
+          `Project Type: ${values.projectType}`,
+          "",
+          "Project details / Requirements:",
+          values.message,
+          "",
+          "Please share suitable project options, pricing and timelines.",
+        ].join("\n");
+
+        statusEl.textContent = "Opening WhatsApp...";
+        statusEl.classList.remove("error");
+        statusEl.classList.add("success");
+        openWhatsAppWithMessage(message);
+      });
+    })();
+  </script>
+</body>
+</html>
